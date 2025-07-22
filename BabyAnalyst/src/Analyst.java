@@ -23,16 +23,18 @@ JPanel panouButoane = new JPanel();
 JPanel panouFrumos = new JPanel();
 JPanel panouOpenFile = new JPanel();
 JPanel panouOperatori = new JPanel();
+JPanel panouRezultate = new JPanel();
 JPanel panouTheme = new JPanel();
 JButton fileChooser = new JButton("Open file");
 JButton changeTheme = new JButton("Change theme");
+JButton formule = new JButton("Formule");
 
 Color magicblue = new Color(138, 205, 255);
 Color grey = new Color(165, 165, 165);
 
 String[] butoane = {"Mean", "Mod", "Median", "Q1", "Q2", "Q3" };
 
-int latime=360;
+int latime=540;
 int inaltime=540;
 
 Analyst()
@@ -49,7 +51,7 @@ Analyst()
 
     panouOpenFile.setBackground(grey);
     panouOpenFile.setPreferredSize(new Dimension(130, 100));
-    panouOpenFile.setLayout(new GridBagLayout());
+    panouOpenFile.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 15));
     panouButoane.add(panouOpenFile, BorderLayout.NORTH);
 
     panouOperatori.setBackground(Color.white);
@@ -62,15 +64,20 @@ Analyst()
     changeTheme.setBorder(new LineBorder(grey));
     changeTheme.setHorizontalAlignment(SwingConstants.CENTER);
     changeTheme.setVerticalAlignment(SwingConstants.CENTER);
-    changeTheme.setFont(new Font("Impact", Font.PLAIN, 12));
-    changeTheme.setPreferredSize(new Dimension(80, 25));
+    changeTheme.setFont(new Font("Impact", Font.PLAIN, 10));
+    changeTheme.setPreferredSize(new Dimension(80, 20));
     panouTheme.add(changeTheme);
 
     panouTheme.setSize(new Dimension(130, 150));
     panouTheme.setBackground(ClassicTheme.navyblue);
     panouButoane.add(panouTheme, BorderLayout.SOUTH);
+    
+    panouRezultate.setSize(new Dimension(130, inaltime));
+    panouRezultate.setBackground(GirlyTheme.lavenderpurple);
+    panouFrumos.add(panouRezultate, BorderLayout.WEST);
 
     panouFrumos.setBackground(Color.black);
+    panouFrumos.setLayout( new BorderLayout());
     fereastra.add(panouFrumos);
 
     fileChooser.setForeground(Color.black);
@@ -83,7 +90,15 @@ Analyst()
     fileChooser.setFocusable(false);
     panouOpenFile.add(fileChooser);
 
-
+    formule.setBackground(Color.white);
+    formule.setForeground(Color.black);
+    formule.setBorder(new LineBorder(grey));
+    formule.setHorizontalAlignment(SwingConstants.CENTER);
+    formule.setVerticalAlignment(SwingConstants.CENTER);
+    formule.setPreferredSize(new Dimension(60, 20));
+    formule.setFont(new Font("Impact", Font.PLAIN, 10));
+    formule.setFocusable(false);
+    panouOpenFile.add(formule);
 
     fileChooser.addActionListener(new ActionListener(){
         public void actionPerformed(ActionEvent e){
