@@ -30,6 +30,12 @@ JPanel mijloc = new JPanel();
 JButton fileChooser = new JButton("Open file");
 JButton changeTheme = new JButton("Change theme");
 JButton formule = new JButton("Formule");
+JLabel medieLabel = new JLabel();
+JLabel modLabel = new JLabel();
+JLabel medianaLabel = new JLabel();
+JLabel Q1Label = new JLabel();
+JLabel Q2Label = new JLabel();
+JLabel Q3Label = new JLabel();
 
 Color magicblue = new Color(138, 205, 255);
 Color grey = new Color(165, 165, 165);
@@ -70,12 +76,10 @@ Analyst()
     changeTheme.setPreferredSize(new Dimension(80, 20));
     panouTheme.add(changeTheme);
 
-    //panouTheme.setSize(new Dimension(130, 10));
     panouTheme.setBackground(ClassicTheme.navyblue);
     panouButoane.add(panouTheme, BorderLayout.SOUTH);
 
-    panouRezultate.setSize(new Dimension(130, inaltime));
-    //panouRezultate.setBackground(GirlyTheme.powderpink);
+    panouRezultate.setSize(new Dimension(80, inaltime));
     panouRezultate.setLayout(new BorderLayout());
     panouFrumos.add(panouRezultate, BorderLayout.WEST);
 
@@ -87,6 +91,25 @@ Analyst()
     mijloc.setBackground(ClassicTheme.sharkgrey);
     mijloc.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 25));
     panouRezultate.add(mijloc);
+
+    medieLabel.setPreferredSize(new Dimension(75, 30));
+    medieLabel.setFont(new Font("Impact", Font.PLAIN, 18));   
+    modLabel.setPreferredSize(new Dimension(75, 30));
+    modLabel.setFont(new Font("Impact", Font.PLAIN, 18));
+    medianaLabel.setPreferredSize(new Dimension(75, 30));
+    medianaLabel.setFont(new Font("Impact", Font.PLAIN, 18));
+    Q1Label.setPreferredSize(new Dimension(75, 30));
+    Q1Label.setFont(new Font("Impact", Font.PLAIN, 18));
+    Q2Label.setPreferredSize(new Dimension(75, 30));
+    Q2Label.setFont(new Font("Impact", Font.PLAIN, 18));
+    Q3Label.setPreferredSize(new Dimension(75, 30));
+    Q3Label.setFont(new Font("Impact", Font.PLAIN, 18));
+    mijloc.add(medieLabel);
+    mijloc.add(modLabel);
+    mijloc.add(medianaLabel);
+    mijloc.add(Q1Label);
+    mijloc.add(Q2Label);
+    mijloc.add(Q3Label);
     
     panouFrumos.setBackground(Color.black);
     panouFrumos.setLayout( new BorderLayout());
@@ -122,6 +145,13 @@ Analyst()
                     Scanner scanner = new Scanner(fisier);
                     String tipSerie = scanner.next();
 
+                    double medie = 0;
+                    double mod = 0;
+                    double mediana = 0;
+                    double Q1 = 0;
+                    double Q2 = 0;
+                    double Q3 = 0;
+
                     switch (tipSerie) {
                         case "DistributionSeries":
                             double[][] tabelDS = new double[100][2];
@@ -140,19 +170,19 @@ Analyst()
                             scanner.close();
 
                             DistributionSeriesStatistics statisticaDS = new DistributionSeriesStatistics(tabelDS, randuriDS);
-                            double medieDS = statisticaDS.getMean();
-                            double modDS = statisticaDS.getMod();
-                            double medianaDS = statisticaDS.getMedian();
-                            double Q1DS = statisticaDS.getQ1();
-                            double Q2DS = statisticaDS.getQ2();
-                            double Q3DS = statisticaDS.getQ3();
+                            medie = statisticaDS.getMean();
+                            mod = statisticaDS.getMod();
+                            mediana = statisticaDS.getMedian();
+                            Q1 = statisticaDS.getQ1();
+                            Q2 = statisticaDS.getQ2();
+                            Q3 = statisticaDS.getQ3();
 
-                            System.out.println("media " + medieDS);
-                            System.out.println("mod " + modDS);
-                            System.out.println("mediana " + medianaDS);
-                            System.out.println("Q1 " + Q1DS);
-                            System.out.println("Q2 " + Q2DS);
-                            System.out.println("Q3 " + Q3DS);
+                            System.out.println("media " + medie);
+                            System.out.println("mod " + mod);
+                            System.out.println("mediana " + mediana);
+                            System.out.println("Q1 " + Q1);
+                            System.out.println("Q2 " + Q2);
+                            System.out.println("Q3 " + Q3);
 
                             break;
                         case "IntervalSeries":
@@ -174,19 +204,19 @@ Analyst()
                             scanner.close();
 
                             IntervalSeriesStatistics statisticaIS = new IntervalSeriesStatistics(tabelIS, randuriIS);
-                            double medieIS = statisticaIS.getMean();
-                            double modIS = statisticaIS.getMod();
-                            double medianaIS = statisticaIS.getMedian();
-                            double Q1IS = statisticaIS.getQ1();
-                            double Q2IS = statisticaIS.getQ2();
-                            double Q3IS = statisticaIS.getQ3();
+                            medie = statisticaIS.getMean();
+                            mod = statisticaIS.getMod();
+                            mediana = statisticaIS.getMedian();
+                            Q1 = statisticaIS.getQ1();
+                            Q2 = statisticaIS.getQ2();
+                            Q3 = statisticaIS.getQ3();
 
-                            System.out.println("media " + medieIS);
-                            System.out.println("mod " + modIS);
-                            System.out.println("mediana " + medianaIS);
-                            System.out.println("Q1 " + Q1IS);
-                            System.out.println("Q2 " + Q2IS);
-                            System.out.println("Q3 " + Q3IS);
+                            System.out.println("media " + medie);
+                            System.out.println("mod " + mod);
+                            System.out.println("mediana " + mediana);
+                            System.out.println("Q1 " + Q1);
+                            System.out.println("Q2 " + Q2);
+                            System.out.println("Q3 " + Q3);
 
                             break;
 
@@ -207,11 +237,50 @@ Analyst()
                         buton.setBackground(Color.white);
                         buton.setBorder(new LineBorder(grey));
 
-                        
-
-
                         panouOperatori.add(buton);
+
+                        final double medieFinal = medie;
+                        final double medianaFinal = mediana;
+                        final double modFinal = mod;
+                        final double Q1Final = Q1;
+                        final double Q2Final = Q2;
+                        final double Q3Final = Q3;
                         
+                        buton.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e){
+                                JButton buton = (JButton) e.getSource();
+                                String simbol = buton.getText();
+
+                                switch(simbol){
+                                    case "Mean":
+                                        medieLabel.setText(scoateVirgula(medieFinal));
+                                        break;
+
+                                    case "Median":
+                                        medianaLabel.setText(scoateVirgula(medianaFinal));
+                                        break;
+
+                                    case "Mod":
+                                        modLabel.setText(scoateVirgula(modFinal));
+                                        break;
+
+                                    case "Q1":
+                                         Q1Label.setText(scoateVirgula(Q1Final));
+                                        break;
+
+                                    case "Q2":
+                                         Q2Label.setText(scoateVirgula(Q2Final));
+                                        break;
+
+                                    case "Q3":
+                                         Q3Label.setText(scoateVirgula(Q3Final));
+                                        break;
+                                        
+                                    default:
+                                        break;
+                                }
+                            }
+                        }); 
                     }
 
                     panouButoane.revalidate();
@@ -423,6 +492,15 @@ public class GirlyTheme{
     static Color peonypink = new Color(255, 65, 153); // chenar pt medie, mod, mediana si interior la Q
     static Color powderpink = new Color(255, 174, 201); // interioul pt medie, mod, mediana
     static Color wildpink = new Color(186, 47, 112); // chenar pt Q   
+}
+
+String scoateVirgula(double valoare){
+    if(valoare %1 == 0){
+        return Integer.toString((int)valoare);
+    }
+    else{
+        return Double.toString(valoare);
+    }
 }
 
 
