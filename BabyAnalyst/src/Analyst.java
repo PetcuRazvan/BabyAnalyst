@@ -55,11 +55,14 @@ Analyst()
                 try{
                     Scanner scanner = new Scanner(fisier);
                     String tipSerie = scanner.next();
+
                     switch (tipSerie) {
                         case "DistributionSeries":
                             double[][] tabel = new double[100][2];
+
                             int i = 0;
                             int randuri = 0;
+
                             while (scanner.hasNext()) {
                                 int n = scanner.nextInt();
                                 double x = scanner.nextDouble();
@@ -67,80 +70,24 @@ Analyst()
                                 tabel[i][1] = x;
                                 randuri++;
                                 i++;
-                                System.out.println(n);
-                                System.out.println(x);
                             }
-                            double suma = 0;
-                            for(i=0; i<randuri; i++){
-                                suma += tabel[i][1];
+                            scanner.close();
 
-                            }
-                            double media = suma/randuri;
+                            DistributionSeriesStatistics statistica = new DistributionSeriesStatistics(tabel, randuri);
+                            double medie = statistica.getMean();
+                            double mod = statistica.getMod();
+                            double mediana = statistica.getMedian();
+                            double Q1 = statistica.getQ1();
+                            double Q2 = statistica.getQ2();
+                            double Q3 = statistica.getQ3();
 
-                            double max = -1;
-                            double mod;
-                            for(i=0; i<randuri; i++){
-                            if (max < tabel[i][0]){
-                                max = tabel[i][0];
-                                mod = tabel[i][1];
-                                }
-                            }
+                            System.out.println("media " + medie);
+                            System.out.println("mod " + mod);
+                            System.out.println("mediana " + mediana);
+                            System.out.println("Q1 " + Q1);
+                            System.out.println("Q2 " + Q2);
+                            System.out.println("Q3 " + Q3);
 
-                            int[] FCC = new int[randuri];
-                            FCC[0] = (int)tabel[0][0];
-                            for(i=1; i<randuri; i++){
-                               FCC[i] = FCC[i-1] + (int)tabel[i][0];
-                                
-                            }
-                            
-                            double locQ1 = 1/4*(FCC[randuri-1]+1);
-                            double locQ2 = 1/2*(FCC[randuri-1]+1);
-                            double locQ3 = 3/4*(FCC[randuri-1]+1);
-
-                            if (locQ1 < FCC[0]){
-                                double Q1 = tabel[0][1];
-
-                            }
-                                else{
-                                    for(i=1; i<randuri; i++){
-                                        if(locQ1 < FCC[i] && locQ1 > FCC[i-1]){
-                                            double Q1 = tabel[i][1];
-                                        }
-                                       
-                                    }
-
-                                }
-
-                                if (locQ2 < FCC[0]){
-                                    double Q2 = tabel[0][1];
-                                    double mediana = Q2;
-    
-                                }
-                                    else{
-                                        for(i=1; i<randuri; i++){
-                                            if(locQ2 < FCC[i] && locQ2 > FCC[i-1]){
-                                                double Q2 = tabel[i][1];
-                                                double mediana = Q2;
-                                            }
-                                            
-                                        }
-    
-                                    }
-
-                                    if (locQ3 < FCC[0]){
-                                        double Q3 = tabel[0][1];
-        
-                                    }
-                                        else{
-                                            for(i=1; i<randuri; i++){
-                                                if(locQ3 < FCC[i] && locQ3 > FCC[i-1]){
-                                                    double Q3 = tabel[i][1];
-                                                }
-                                                
-                                            }
-        
-                                        }
-                            
                             break;
                         case "IntervalSeries":
 
@@ -157,4 +104,89 @@ Analyst()
         }
     });
 }
+
+double Media(double[][] tabel, int randuri){
+    double suma = 0;
+    double n = 0;
+    for(int i = 0;i<randuri;i++){
+        suma += tabel[i][1] * tabel[i][0];
+        n += tabel[i][0];
+    }
+    return suma/n;
+}
+double Mod(double[][] tabel, int randuri){
+    double max = -1;
+    double mod = -1;
+    for(int i = 0;i<randuri;i++){
+        if(tabel[i][0] > max){
+            max = tabel[i][0];
+            mod = tabel[i][1];
+        }
+    }
+    return mod;
+  }
+void UmplereFCC(double[][] tabel,int[] FCC, int randuri){
+    FCC[0] = (int)tabel[0][0];
+    for(int i = 1; i < randuri;i ++){
+        FCC[i] = FCC[i-1] + (int)tabel[i][0];
+    }
+}
+double Quartil(double[][] tabel, int[] FCC, int randuri, double locQ){
+    double Q = -1;
+    if (locQ < FCC[0]){
+        Q = tabel[0][1];
+    }
+    else{
+        for(int i=1; i<randuri; i++){
+            if(locQ < FCC[i] && locQ > FCC[i-1]){
+                Q = tabel[i][1];
+            } 
+        }
+    }
+    return Q;
+}
+public class DistributionSeriesStatistics{
+
+    double medie;
+    double mod;
+    double Q1;
+    double Q2;
+    double Q3;
+
+    public DistributionSeriesStatistics(double[][] tabel, int randuri){
+        medie = Media(tabel, randuri);
+    mod = Mod(tabel, randuri);
+
+    int[] FCC = new int[randuri];
+    UmplereFCC(tabel, FCC, randuri);
+                            
+    double locQ1 = 1.0/4*(FCC[randuri-1]+1);
+    double locQ2 = 1.0/2*(FCC[randuri-1]+1);
+    double locQ3 = 3.0/4*(FCC[randuri-1]+1);
+
+    Q1 = Quartil(tabel, FCC, randuri, locQ1);
+    Q2 = Quartil(tabel, FCC, randuri, locQ2);
+    Q3 = Quartil(tabel, FCC, randuri, locQ3);
+    }
+
+    public double getMean(){
+        return medie;
+    }
+    public double getMod(){
+        return mod;
+    }
+    public double getMedian(){
+        return Q2;
+    }
+    public double getQ1(){
+        return Q1;
+    }
+    public double getQ2(){
+        return Q2;
+    }
+    public double getQ3(){
+        return Q3;
+    }
+}
+
 }
