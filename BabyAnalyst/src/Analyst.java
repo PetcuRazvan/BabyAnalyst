@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.Scanner;
 
+
+
 //Loc de parcare cursor
 //
 //
@@ -18,6 +20,7 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 public class Analyst {
+    
 JFrame fereastra = new JFrame();
 JPanel panouButoane = new JPanel();
 JPanel panouFrumos = new JPanel();
@@ -36,6 +39,9 @@ JLabel medianaLabel = new JLabel();
 JLabel Q1Label = new JLabel();
 JLabel Q2Label = new JLabel();
 JLabel Q3Label = new JLabel();
+
+//ImageIcon icon = new ImageIcon(getClass().getResource("/src/poze/statisticaFundal.png"));
+//JLabel labelImagine = new JLabel(icon);
 
 Color magicblue = new Color(138, 205, 255);
 Color grey = new Color(165, 165, 165);
@@ -82,7 +88,7 @@ Analyst()
     panouRezultate.setSize(new Dimension(80, inaltime));
     panouRezultate.setLayout(new BorderLayout());
     panouFrumos.add(panouRezultate, BorderLayout.WEST);
-
+    //panouFrumos.add(labelImagine);
 
     sus.setPreferredSize(new Dimension(130, 100));
     sus.setBackground(Color.white);
@@ -112,7 +118,9 @@ Analyst()
     mijloc.add(Q3Label);
     
     panouFrumos.setBackground(Color.black);
+    
     panouFrumos.setLayout( new BorderLayout());
+    
     fereastra.add(panouFrumos);
 
     fileChooser.setForeground(Color.black);
@@ -198,6 +206,10 @@ Analyst()
                                 tabelIS[j][0] = n;
                                 tabelIS[j][1] = limInf;
                                 tabelIS[j][2] = limSup;
+
+                                System.out.println(n);
+                                System.out.println(limInf);
+                                System.out.println(limSup);
                                 randuriIS++;
                                 j++;
                             }
@@ -211,12 +223,12 @@ Analyst()
                             Q2 = statisticaIS.getQ2();
                             Q3 = statisticaIS.getQ3();
 
-                            System.out.println("media " + medie);
-                            System.out.println("mod " + mod);
-                            System.out.println("mediana " + mediana);
-                            System.out.println("Q1 " + Q1);
-                            System.out.println("Q2 " + Q2);
-                            System.out.println("Q3 " + Q3);
+                            // System.out.println("media " + medie);
+                            // System.out.println("mod " + mod);
+                            // System.out.println("mediana " + mediana);
+                            // System.out.println("Q1 " + Q1);
+                            // System.out.println("Q2 " + Q2);
+                            // System.out.println("Q3 " + Q3);
 
                             break;
 
@@ -402,7 +414,7 @@ double ModIS(double[][] tabel, int randuri){
     }
 
     double D1 = tabel[poz][0] - tabel[poz-1][0];
-    double D2 = tabel[poz][0] - tabel[poz + 2][0];
+    double D2 = tabel[poz][0] - tabel[poz + 1][0];
     double lungime = tabel[poz][2] - tabel[poz][1];
     double mod = tabel[poz][1] + lungime*D1/(D1 + D2);
 
@@ -417,16 +429,17 @@ double QuartilIS(double[][] tabel, int[] FCC, int randuri, double locQ){
     
     if (locQ < FCC[0]){
         n = tabel[0][0];
+        limInf = tabel[0][1];
         lungime = tabel[0][2] - tabel[0][1];
 
-        return tabel[0][1] + lungime*locQ/n;
+        return limInf + lungime*locQ/n;
     }
     else{
         for(int i=1; i<randuri; i++){
             if(locQ < FCC[i] && locQ > FCC[i-1]){
                 n = tabel[i][0];
-                lungime = tabel[0][2] - tabel[0][1];
-                limInf = tabel[0][1];
+                lungime = tabel[i][2] - tabel[i][1];
+                limInf = tabel[i][1];
                 poz = i;
             } 
         }
