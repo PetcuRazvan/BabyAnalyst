@@ -25,6 +25,8 @@ JPanel panouOpenFile = new JPanel();
 JPanel panouOperatori = new JPanel();
 JPanel panouRezultate = new JPanel();
 JPanel panouTheme = new JPanel();
+JPanel sus = new JPanel();
+JPanel mijloc = new JPanel();
 JButton fileChooser = new JButton("Open file");
 JButton changeTheme = new JButton("Change theme");
 JButton formule = new JButton("Formule");
@@ -68,14 +70,24 @@ Analyst()
     changeTheme.setPreferredSize(new Dimension(80, 20));
     panouTheme.add(changeTheme);
 
-    panouTheme.setSize(new Dimension(130, 150));
+    //panouTheme.setSize(new Dimension(130, 10));
     panouTheme.setBackground(ClassicTheme.navyblue);
     panouButoane.add(panouTheme, BorderLayout.SOUTH);
-    
+
     panouRezultate.setSize(new Dimension(130, inaltime));
-    panouRezultate.setBackground(GirlyTheme.lavenderpurple);
+    //panouRezultate.setBackground(GirlyTheme.powderpink);
+    panouRezultate.setLayout(new BorderLayout());
     panouFrumos.add(panouRezultate, BorderLayout.WEST);
 
+
+    sus.setPreferredSize(new Dimension(130, 100));
+    sus.setBackground(Color.white);
+    panouRezultate.add(sus, BorderLayout.NORTH);
+
+    mijloc.setBackground(ClassicTheme.sharkgrey);
+    mijloc.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 25));
+    panouRezultate.add(mijloc);
+    
     panouFrumos.setBackground(Color.black);
     panouFrumos.setLayout( new BorderLayout());
     fereastra.add(panouFrumos);
@@ -182,7 +194,7 @@ Analyst()
                             break;
                     }
 
-                    int poz = 0;
+                    
                     for(int i = 0; i < butoane.length; i++){
                         JButton buton = new JButton(butoane[i]);
                         
@@ -195,9 +207,7 @@ Analyst()
                         buton.setBackground(Color.white);
                         buton.setBorder(new LineBorder(grey));
 
-                        // GridBagConstraints gbc = new GridBagConstraints();
-                        // gbc.gridy = poz;
-                        // poz +=2;
+                        
 
 
                         panouOperatori.add(buton);
