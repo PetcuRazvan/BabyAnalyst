@@ -46,7 +46,9 @@ JLabel Q3Label = new JLabel();
 Color magicblue = new Color(138, 205, 255);
 Color grey = new Color(165, 165, 165);
 
-String[] butoane = {"Mean", "Mod", "Median", "Q1", "Q2", "Q3" };
+String[] butoane = {"Mean", "Mode", "Median", "Q1", "Q2", "Q3" };
+
+String[] primele3 = {"Mean", "Mode", "Median"};
 
 int latime=540;
 int inaltime=540;
@@ -59,34 +61,36 @@ Analyst()
     fereastra.setResizable(false);
     fereastra.setLayout(new BorderLayout());
 
-    panouButoane.setPreferredSize(new Dimension(130, inaltime));
+    panouButoane.setPreferredSize(new Dimension(130, 540));
+    //panouButoane.setBorder(new LineBorder(Color.black, 7));
     panouButoane.setLayout(new BorderLayout());
     fereastra.add(panouButoane, BorderLayout.WEST);
 
-    panouOpenFile.setBackground(grey);
+    panouOpenFile.setBackground(ClassicTheme.sharkgrey);
     panouOpenFile.setPreferredSize(new Dimension(130, 100));
     panouOpenFile.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 15));
     panouButoane.add(panouOpenFile, BorderLayout.NORTH);
 
-    panouOperatori.setBackground(Color.white);
+    panouOperatori.setBackground(ClassicTheme.sharkgrey);
     panouOperatori.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 25));
     panouButoane.add(panouOperatori);
 
     changeTheme.setBackground(Color.white);
     changeTheme.setForeground(Color.black);
     changeTheme.setFocusable(false);
-    changeTheme.setBorder(new LineBorder(grey));
+    changeTheme.setBorder(new LineBorder(Color.black, 3));
     changeTheme.setHorizontalAlignment(SwingConstants.CENTER);
     changeTheme.setVerticalAlignment(SwingConstants.CENTER);
     changeTheme.setFont(new Font("Impact", Font.PLAIN, 10));
     changeTheme.setPreferredSize(new Dimension(80, 20));
     panouTheme.add(changeTheme);
 
-    panouTheme.setBackground(ClassicTheme.navyblue);
+    panouTheme.setBackground(ClassicTheme.sharkgrey);
     panouButoane.add(panouTheme, BorderLayout.SOUTH);
 
-    panouRezultate.setSize(new Dimension(80, inaltime));
+    panouRezultate.setSize(new Dimension(110, inaltime));
     panouRezultate.setLayout(new BorderLayout());
+    panouRezultate.setBorder(new LineBorder(Color.black, 7));
     panouFrumos.add(panouRezultate, BorderLayout.WEST);
     //panouFrumos.add(labelImagine);
 
@@ -94,7 +98,7 @@ Analyst()
     sus.setBackground(Color.white);
     panouRezultate.add(sus, BorderLayout.NORTH);
 
-    mijloc.setBackground(ClassicTheme.sharkgrey);
+    mijloc.setBackground(Color.white);
     mijloc.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 25));
     panouRezultate.add(mijloc);
 
@@ -125,7 +129,7 @@ Analyst()
 
     fileChooser.setForeground(Color.black);
     fileChooser.setBackground(Color.white);
-    fileChooser.setBorder(new LineBorder(grey));
+    fileChooser.setBorder(new LineBorder(Color.black, 3));
     fileChooser.setHorizontalAlignment(SwingConstants.CENTER);
     fileChooser.setVerticalAlignment(SwingConstants.CENTER);
     fileChooser.setPreferredSize(new Dimension(100, 30));
@@ -135,7 +139,7 @@ Analyst()
 
     formule.setBackground(Color.white);
     formule.setForeground(Color.black);
-    formule.setBorder(new LineBorder(grey));
+    formule.setBorder(new LineBorder(Color.black, 3));
     formule.setHorizontalAlignment(SwingConstants.CENTER);
     formule.setVerticalAlignment(SwingConstants.CENTER);
     formule.setPreferredSize(new Dimension(60, 20));
@@ -245,9 +249,17 @@ Analyst()
                         buton.setHorizontalAlignment(SwingConstants.CENTER);
                         buton.setVerticalAlignment(SwingConstants.CENTER);
                         buton.setFont(new Font("Impact", Font.PLAIN, 18));
-                        buton.setForeground(Color.black);
-                        buton.setBackground(Color.white);
-                        buton.setBorder(new LineBorder(grey));
+                        
+                        if(Arrays.asList(primele3).contains(butoane[i])){
+                            buton.setBorder(new LineBorder(ClassicTheme.blue, 3));
+                            buton.setBackground(ClassicTheme.navyblue);
+                            buton.setForeground(Color.white);
+                        }
+                        else{
+                            buton.setBorder(new LineBorder(Color.white, 3));
+                            buton.setBackground(ClassicTheme.greyblue);
+                            buton.setForeground(ClassicTheme.silverblue);
+                        }
 
                         panouOperatori.add(buton);
 
@@ -272,7 +284,7 @@ Analyst()
                                         medianaLabel.setText(scoateVirgula(medianaFinal));
                                         break;
 
-                                    case "Mod":
+                                    case "Mode":
                                         modLabel.setText(scoateVirgula(modFinal));
                                         break;
 
