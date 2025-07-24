@@ -39,6 +39,7 @@ JLabel medianaLabel = new JLabel();
 JLabel Q1Label = new JLabel();
 JLabel Q2Label = new JLabel();
 JLabel Q3Label = new JLabel();
+Imagine img = new Imagine();
 
 //ImageIcon icon = new ImageIcon(getClass().getResource("/src/poze/statisticaFundal.png"));
 //JLabel labelImagine = new JLabel(icon);
@@ -52,6 +53,7 @@ String[] primele3 = {"Mean", "Mode", "Median"};
 
 int latime=540;
 int inaltime=540;
+
 
 Analyst()
 {
@@ -76,9 +78,9 @@ Analyst()
     panouButoane.add(panouOperatori);
 
     changeTheme.setBackground(Color.white);
-    changeTheme.setForeground(Color.black);
+    changeTheme.setForeground(ClassicTheme.silverblue);
     changeTheme.setFocusable(false);
-    changeTheme.setBorder(new LineBorder(Color.black, 3));
+    changeTheme.setBorder(new LineBorder(ClassicTheme.silverblue));
     changeTheme.setHorizontalAlignment(SwingConstants.CENTER);
     changeTheme.setVerticalAlignment(SwingConstants.CENTER);
     changeTheme.setFont(new Font("Impact", Font.PLAIN, 10));
@@ -90,7 +92,7 @@ Analyst()
 
     panouRezultate.setSize(new Dimension(110, inaltime));
     panouRezultate.setLayout(new BorderLayout());
-    panouRezultate.setBorder(new LineBorder(Color.black, 7));
+    //panouRezultate.setBorder(new LineBorder(Color.black, 7));
     panouFrumos.add(panouRezultate, BorderLayout.WEST);
     //panouFrumos.add(labelImagine);
 
@@ -121,15 +123,16 @@ Analyst()
     mijloc.add(Q2Label);
     mijloc.add(Q3Label);
     
-    panouFrumos.setBackground(Color.black);
     
     panouFrumos.setLayout( new BorderLayout());
+    panouFrumos.add(img,BorderLayout.CENTER);
+   
     
     fereastra.add(panouFrumos);
 
-    fileChooser.setForeground(Color.black);
+    fileChooser.setForeground(ClassicTheme.blue);
     fileChooser.setBackground(Color.white);
-    fileChooser.setBorder(new LineBorder(Color.black, 3));
+    fileChooser.setBorder(new LineBorder(ClassicTheme.silverblue));
     fileChooser.setHorizontalAlignment(SwingConstants.CENTER);
     fileChooser.setVerticalAlignment(SwingConstants.CENTER);
     fileChooser.setPreferredSize(new Dimension(100, 30));
@@ -138,8 +141,8 @@ Analyst()
     panouOpenFile.add(fileChooser);
 
     formule.setBackground(Color.white);
-    formule.setForeground(Color.black);
-    formule.setBorder(new LineBorder(Color.black, 3));
+    formule.setForeground(ClassicTheme.silverblue);
+    formule.setBorder(new LineBorder(ClassicTheme.silverblue));
     formule.setHorizontalAlignment(SwingConstants.CENTER);
     formule.setVerticalAlignment(SwingConstants.CENTER);
     formule.setPreferredSize(new Dimension(60, 20));
