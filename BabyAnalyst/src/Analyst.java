@@ -97,25 +97,37 @@ Analyst()
     //panouFrumos.add(labelImagine);
 
     sus.setPreferredSize(new Dimension(130, 100));
-    sus.setBackground(Color.white);
+    sus.setBackground(ClassicTheme.sharkgrey);
     panouRezultate.add(sus, BorderLayout.NORTH);
 
-    mijloc.setBackground(Color.white);
+    mijloc.setBackground(ClassicTheme.sharkgrey);
     mijloc.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 25));
     panouRezultate.add(mijloc);
 
     medieLabel.setPreferredSize(new Dimension(75, 30));
-    medieLabel.setFont(new Font("Impact", Font.PLAIN, 18));   
+    medieLabel.setFont(new Font("Impact", Font.PLAIN, 18));
+    medieLabel.setForeground(Color.black); 
+
     modLabel.setPreferredSize(new Dimension(75, 30));
     modLabel.setFont(new Font("Impact", Font.PLAIN, 18));
+    modLabel.setForeground(Color.black);
+
     medianaLabel.setPreferredSize(new Dimension(75, 30));
     medianaLabel.setFont(new Font("Impact", Font.PLAIN, 18));
+    medianaLabel.setForeground(Color.black);
+
     Q1Label.setPreferredSize(new Dimension(75, 30));
     Q1Label.setFont(new Font("Impact", Font.PLAIN, 18));
+    Q1Label.setForeground(Color.black);
+
     Q2Label.setPreferredSize(new Dimension(75, 30));
     Q2Label.setFont(new Font("Impact", Font.PLAIN, 18));
+    Q2Label.setForeground(Color.black);
+
     Q3Label.setPreferredSize(new Dimension(75, 30));
     Q3Label.setFont(new Font("Impact", Font.PLAIN, 18));
+    Q3Label.setForeground(Color.black);
+
     mijloc.add(medieLabel);
     mijloc.add(modLabel);
     mijloc.add(medianaLabel);
@@ -243,7 +255,15 @@ Analyst()
                             break;
                     }
 
-                    
+                    panouOperatori.removeAll();
+
+                    medieLabel.setText("");
+                    modLabel.setText("");
+                    medianaLabel.setText("");
+                    Q1Label.setText("");
+                    Q2Label.setText("");
+                    Q3Label.setText("");
+
                     for(int i = 0; i < butoane.length; i++){
                         JButton buton = new JButton(butoane[i]);
                         
