@@ -39,7 +39,10 @@ JLabel medianaLabel = new JLabel();
 JLabel Q1Label = new JLabel();
 JLabel Q2Label = new JLabel();
 JLabel Q3Label = new JLabel();
-Imagine img = new Imagine();
+ImagineClassicTheme imgClassicTheme = new ImagineClassicTheme();
+ImagineGirlyTheme imgGirlyTheme = new ImagineGirlyTheme();
+
+String theme = "classic";
 
 //ImageIcon icon = new ImageIcon(getClass().getResource("/src/poze/statisticaFundal.png"));
 //JLabel labelImagine = new JLabel(icon);
@@ -137,7 +140,7 @@ Analyst()
     
     
     panouFrumos.setLayout( new BorderLayout());
-    panouFrumos.add(img,BorderLayout.CENTER);
+    panouFrumos.add(imgClassicTheme,BorderLayout.CENTER);
    
     
     fereastra.add(panouFrumos);
@@ -340,6 +343,75 @@ Analyst()
             }
         }
     });
+
+    changeTheme.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e){
+            switch (theme) {
+                case "classic":
+                    theme = "girly";
+                    panouOperatori.setBackground(GirlyTheme.lavenderpurple);
+                    panouOpenFile.setBackground(GirlyTheme.lavenderpurple);
+                    panouTheme.setBackground(GirlyTheme.lavenderpurple);
+
+                    sus.setBackground(GirlyTheme.lavenderpurple);
+                    mijloc.setBackground(GirlyTheme.lavenderpurple);
+
+                    fileChooser.setForeground(Color.black);
+                    fileChooser.setBackground(Color.white);
+                    fileChooser.setBorder(new LineBorder(Color.black));
+                    fileChooser.setFont(new Font("Elephant", Font.PLAIN, 18));
+
+                    formule.setBackground(Color.white);
+                    formule.setForeground(GirlyTheme.peonypink);
+                    formule.setBorder(new LineBorder(GirlyTheme.peonypink));
+                    formule.setFont(new Font("Elephant", Font.PLAIN, 10));
+
+                    changeTheme.setBackground(Color.white);
+                    changeTheme.setForeground(GirlyTheme.peonypink);
+                    changeTheme.setBorder(new LineBorder(GirlyTheme.peonypink));
+                    changeTheme.setFont(new Font("Elephant", Font.PLAIN, 10));
+
+                    panouFrumos.remove(imgClassicTheme);
+                    panouFrumos.add(imgGirlyTheme);
+                    panouFrumos.revalidate();
+                    panouFrumos.repaint();
+                    break;
+                
+                case "girly":
+                    theme = "classic";
+                    panouOperatori.setBackground(ClassicTheme.sharkgrey);
+                    panouOpenFile.setBackground(ClassicTheme.sharkgrey);
+                    panouTheme.setBackground(ClassicTheme.sharkgrey);
+
+                    sus.setBackground(ClassicTheme.sharkgrey);
+                    mijloc.setBackground(ClassicTheme.sharkgrey);
+
+                    fileChooser.setForeground(ClassicTheme.blue);
+                    fileChooser.setBackground(Color.white);
+                    fileChooser.setBorder(new LineBorder(ClassicTheme.silverblue));
+                    fileChooser.setFont(new Font("Impact", Font.PLAIN, 18));
+
+                    formule.setBackground(Color.white);
+                    formule.setForeground(ClassicTheme.silverblue);
+                    formule.setBorder(new LineBorder(ClassicTheme.silverblue));
+                    formule.setFont(new Font("Impact", Font.PLAIN, 10));
+
+                    changeTheme.setBackground(Color.white);
+                    changeTheme.setForeground(ClassicTheme.silverblue);
+                    changeTheme.setBorder(new LineBorder(ClassicTheme.silverblue));
+                    changeTheme.setFont(new Font("Impact", Font.PLAIN, 10));
+
+                    panouFrumos.remove(imgGirlyTheme);
+                    panouFrumos.add(imgClassicTheme);
+                    panouFrumos.revalidate();
+                    panouFrumos.repaint();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    });
 }
 
 double MediaDS(double[][] tabel, int randuri){
@@ -537,7 +609,7 @@ public class ClassicTheme{
 
 public class GirlyTheme{
     static Color lavenderpurple = new Color(229, 156, 255); //background din spatele butoanelor
-    static Color peonypink = new Color(255, 65, 153); // chenar pt medie, mod, mediana si interior la Q
+    static Color peonypink = new Color(255, 65, 153); //  si interiorchenar pt medie, mod, mediana la Q
     static Color powderpink = new Color(255, 174, 201); // interioul pt medie, mod, mediana
     static Color wildpink = new Color(186, 47, 112); // chenar pt Q   
 }

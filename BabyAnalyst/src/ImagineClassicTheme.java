@@ -1,11 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Imagine extends JPanel {
+public class ImagineClassicTheme extends JPanel {
     private Image image;
 
-    public Imagine() {
-        image = new ImageIcon(getClass().getResource("/poze/statisticaFundal.png")).getImage();
+    public ImagineClassicTheme() {
+        image = new ImageIcon(getClass().getResource("/poze/statisticaFundalClassic.png")).getImage();
     }
 
     @Override
