@@ -42,6 +42,15 @@ public class Analyst {
 
     String theme = "classic";
 
+    boolean butoaneDechise = false;
+
+    double medie = 0;
+    double mod = 0;
+    double mediana = 0;
+    double Q1 = 0;
+    double Q2 = 0;
+    double Q3 = 0;
+
     // ImageIcon icon = new
     // ImageIcon(getClass().getResource("/src/poze/statisticaFundal.png"));
     // JLabel labelImagine = new JLabel(icon);
@@ -170,12 +179,7 @@ public class Analyst {
                         Scanner scanner = new Scanner(fisier);
                         String tipSerie = scanner.next();
 
-                        double medie = 0;
-                        double mod = 0;
-                        double mediana = 0;
-                        double Q1 = 0;
-                        double Q2 = 0;
-                        double Q3 = 0;
+                        
 
                         switch (tipSerie) {
                             case "DistributionSeries":
@@ -264,7 +268,18 @@ public class Analyst {
                         Q2Label.setText("");
                         Q3Label.setText("");
 
-                        butoaneOperanziClassicTheme(medie, mediana, mod, Q1, Q2, Q3);
+                        switch (theme) {
+                            case "classic": 
+                            butoaneOperanziClassicTheme(medie, mediana, mod, Q1, Q2, Q3);
+                                break;
+                                case "girly":
+                            butoaneOperanziGirlyTheme(medie, mediana, mod, Q1, Q2, Q3);    
+                        
+                            default:
+                                break;
+                        }
+
+                        butoaneDechise = true;
 
                         panouButoane.revalidate();
                         panouButoane.repaint();
@@ -281,6 +296,12 @@ public class Analyst {
                 switch (theme) {
                     case "classic":
                         theme = "girly";
+
+                        panouOperatori.removeAll();
+                        if(butoaneDechise){
+                             butoaneOperanziGirlyTheme(medie, mediana, mod, Q1, Q2, Q3);
+                        }
+
                         panouOperatori.setBackground(GirlyTheme.lavenderpurple);
                         panouOpenFile.setBackground(GirlyTheme.lavenderpurple);
                         panouTheme.setBackground(GirlyTheme.lavenderpurple);
@@ -309,8 +330,15 @@ public class Analyst {
                         panouFrumos.repaint();
                         break;
 
+                       
                     case "girly":
                         theme = "classic";
+
+                        panouOperatori.removeAll();
+                        if(butoaneDechise){
+                             butoaneOperanziClassicTheme(medie, mediana, mod, Q1, Q2, Q3);
+                        }
+
                         panouOperatori.setBackground(ClassicTheme.sharkgrey);
                         panouOpenFile.setBackground(ClassicTheme.sharkgrey);
                         panouTheme.setBackground(ClassicTheme.sharkgrey);
@@ -576,11 +604,11 @@ public class Analyst {
             buton.setVerticalAlignment(SwingConstants.CENTER);
             buton.setFont(new Font("Impact", Font.PLAIN, 18));
 
-            if (Arrays.asList(primele3).contains(butoane[i])) {
+            if (Arrays.asList(primele3).contains(butoane[i])) {                    //culorile pt primele 3 butoane
                 buton.setBorder(new LineBorder(ClassicTheme.blue, 3));
                 buton.setBackground(ClassicTheme.navyblue);
                 buton.setForeground(Color.white);
-            } else {
+            } else {                                                                //culorile pt urmatoarele 3
                 buton.setBorder(new LineBorder(Color.white, 3));
                 buton.setBackground(ClassicTheme.greyblue);
                 buton.setForeground(ClassicTheme.silverblue);
@@ -633,4 +661,71 @@ public class Analyst {
         }
     }
 
+
+ void butoaneOperanziGirlyTheme(double medie, double mediana, double mod, double Q1, double Q2, double Q3){
+        for (int i = 0; i < butoane.length; i++) {
+            JButton buton = new JButton(butoane[i]);
+
+            buton.setFocusable(false);
+            buton.setPreferredSize(new Dimension(100, 30));
+            buton.setHorizontalAlignment(SwingConstants.CENTER);
+            buton.setVerticalAlignment(SwingConstants.CENTER);
+            buton.setFont(new Font("Elephant", Font.PLAIN, 18));
+
+            if (Arrays.asList(primele3).contains(butoane[i])) {                    //culorile pt primele 3 butoane
+                buton.setBorder(new LineBorder(GirlyTheme.peonypink, 3));
+                buton.setBackground(GirlyTheme.powderpink);
+                buton.setForeground(Color.black);
+            } else {                                                                //culorile pt urmatoarele 3
+                buton.setBorder(new LineBorder(GirlyTheme.wildpink, 3));
+                buton.setBackground(GirlyTheme.peonypink);
+                buton.setForeground(Color.black);
+            }
+
+            panouOperatori.add(buton);
+
+            final double medieFinal = medie;
+            final double medianaFinal = mediana;
+            final double modFinal = mod;
+            final double Q1Final = Q1;
+            final double Q2Final = Q2;
+            final double Q3Final = Q3;
+
+            buton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    JButton buton = (JButton) e.getSource();
+                    String simbol = buton.getText();
+
+                    switch (simbol) {
+                        case "Mean":
+                            medieLabel.setText(scoateVirgula(medieFinal));
+                            break;
+
+                        case "Median":
+                            medianaLabel.setText(scoateVirgula(medianaFinal));
+                            break;
+
+                        case "Mode":
+                            modLabel.setText(scoateVirgula(modFinal));
+                            break;
+
+                        case "Q1":
+                            Q1Label.setText(scoateVirgula(Q1Final));
+                            break;
+
+                        case "Q2":
+                            Q2Label.setText(scoateVirgula(Q2Final));
+                            break;
+
+                        case "Q3":
+                            Q3Label.setText(scoateVirgula(Q3Final));
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+            });
+        }
+    }
 }
