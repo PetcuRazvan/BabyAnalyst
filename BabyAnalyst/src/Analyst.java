@@ -1,6 +1,9 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -168,6 +171,30 @@ public class Analyst {
         formule.setFont(new Font("Impact", Font.PLAIN, 10));
         formule.setFocusable(false);
         panouOpenFile.add(formule);
+
+        formule.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (Desktop.isDesktopSupported()) {
+                    try {
+                        InputStream is = getClass().getResourceAsStream("/formule.pdf");
+                        if (is == null) {
+                        System.out.println("Nu am găsit fisierul in resources!");
+                        return;
+                        }
+
+                        // scriem temporar pe disc ca sa poata fi deschis
+                        File tempFile = File.createTempFile("formule", ".pdf");
+                        Files.copy(is, tempFile.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+                        Desktop.getDesktop().open(tempFile);
+
+                    } 
+                    catch (Exception ex) {
+                    ex.printStackTrace();
+                    }
+             
+                }
+            }
+        });
 
         fileChooser.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
