@@ -1,18 +1,36 @@
-## Getting Started
+Java Central Tendency Calculator
+A Java application that calculates the measures of central tendency (mean, median, and mode) for a given dataset.
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Features:
+  -File Explorer – easily select your data file
+  -Dedicated Buttons – compute each index (mean, median, mode) individually
+  -Theme Switcher – toggle between light and dark themes
 
-## Folder Structure
+How to Use:
+  -Click the Choose File button and select a file containing your dataset.
+  -Press the corresponding button to calculate each statistical measure.
+  -The file must follow one of the two formats shown below:
+    
+  [IntervalSeries.txt](https://github.com/user-attachments/files/23015544/IntervalSeries.txt)
+IntervalSeries
+12 0 10
+20 10 20
+40 20 30
+60 30 40
+20 40 50
 
-The workspace contains two folders by default, where:
+[DistributionSeries.txt](https://github.com/user-attachments/files/23015549/DistributionSeries.txt)
+DistributionSeries
+9 1
+10 2
+3 3
+6 7
+20 9
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+For the Distribution Series:
+  The first column represents the number of observations (frequency).
+  The second column represents the data values.
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+For the Interval Series:
+  The first column represents the frequency.
+  The next two columns represent the class intervals.
