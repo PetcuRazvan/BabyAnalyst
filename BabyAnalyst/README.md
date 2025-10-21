@@ -1,9 +1,9 @@
 Java Central Tendency Calculator
-A Java application that calculates the measures of central tendency (mean, median, and mode) for a given dataset.
+A Java application that calculates the measures of central tendency (mean, median, mode, quartiles) for a given dataset.
 
 Features:
   -File Explorer – easily select your data file
-  -Dedicated Buttons – compute each index (mean, median, mode) individually
+  -Dedicated Buttons – compute each index (mean, median, mode, quartiles) individually
   -Theme Switcher 
 
 How to Use:
