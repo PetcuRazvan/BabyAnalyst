@@ -11,21 +11,8 @@ How to Use:
   -Press the corresponding button to calculate each statistical measure.
   -The file must follow one of the two formats shown below:
     
-  [IntervalSeries.txt](https://github.com/user-attachments/files/23015544/IntervalSeries.txt)
-IntervalSeries
-12 0 10
-20 10 20
-40 20 30
-60 30 40
-20 40 50
-
+[IntervalSeries.txt](https://github.com/user-attachments/files/23015544/IntervalSeries.txt)
 [DistributionSeries.txt](https://github.com/user-attachments/files/23015549/DistributionSeries.txt)
-DistributionSeries
-9 1
-10 2
-3 3
-6 7
-20 9
 
 For the Distribution Series:
   The first column represents the number of observations (frequency).
