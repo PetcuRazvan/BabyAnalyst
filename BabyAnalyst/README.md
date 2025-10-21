@@ -4,7 +4,7 @@ A Java application that calculates the measures of central tendency (mean, media
 Features:
   -File Explorer – easily select your data file
   -Dedicated Buttons – compute each index (mean, median, mode) individually
-  -Theme Switcher – toggle between light and dark themes
+  -Theme Switcher 
 
 How to Use:
   -Click the Choose File button and select a file containing your dataset.
